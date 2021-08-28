@@ -41,7 +41,10 @@ const QuoteAdd = ({history}) => {
                             onChange={e => setNewQuote({...newQuote, category: e.target.value})}
                         >
                             {category.map(cat => (
-                                <option value={cat.id}>{cat.title}</option>
+                                <option
+                                    key={cat.id}
+                                    value={cat.id}
+                                >{cat.title}</option>
                             ))
                             }
                         </select>

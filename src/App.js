@@ -2,6 +2,7 @@ import './App.css';
 import {NavLink, Route, Switch} from "react-router-dom";
 import Quotes from "./Conteiner/Quotes/Quotes";
 import QuoteAdd from "./Conteiner/QuoteAdd/QuoteAdd";
+import Quote from "./Conteiner/Quote/Quote";
 
 function App() {
     return (
@@ -16,6 +17,8 @@ function App() {
             <Switch>
                 <Route path="/" exact component={Quotes}/>
                 <Route path="/quote/add" component={QuoteAdd}/>
+                <Route path="/quote/:id" component={Quote}/>
+                <Route render={()=><h1>NotFound</h1>}/>
             </Switch>
         </div>
     );

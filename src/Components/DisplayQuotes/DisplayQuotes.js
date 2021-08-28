@@ -29,12 +29,12 @@ const DisplayQuotes = () => {
     }, [check]);
 
     const onClickEditHandler = (id) => {
-        history.replace('/quotes/' + id);
+        history.replace('/quote/' + id);
     };
 
     const onClickRemoveHandler = async (id) => {
         console.log(id);
-        const url = '/posts/' + id + '.json';
+        const url = '/quotes/' + id + '.json';
         try {
             await axiosApi.delete(url);
         } finally {
