@@ -4,22 +4,24 @@ import './DisplayCategory.css';
 import category from "../../config";
 
 const DisplayCategory = () => {
-
     return (
-            <div className="LeftPanel">
-                <ul  className="CategoryUl">
-                    {category.map(pos => (
+        <div className="LeftPanel">
+            <ul className="CategoryUl">
+                {category.map(pos => {
+                        const URLCategory = '/quotes/' + pos.id;
+                        return (
                             <li
                                 key={pos.id}
                                 className="CategoryLi"
                             ><Link
-                                to="/"
+                                to={URLCategory}
                                 className="CategoryA"
                             >{pos.title}</Link></li>
                         )
-                    )}
-                </ul>
-            </div>
+                    }
+                )}
+            </ul>
+        </div>
     );
 };
 

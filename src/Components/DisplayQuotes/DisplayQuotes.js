@@ -4,15 +4,25 @@ import axiosApi from "../../AxiosApi";
 import category from "../../config";
 import {useHistory} from "react-router-dom";
 
-const DisplayQuotes = () => {
+const DisplayQuotes = ({query}) => {
     let history = useHistory();
     const [quotes, setQuotes] = useState(null);
     const [check, setCheck] = useState(false);
+    let urlResponse = '/quotes.json';
+
+    if (query) {
+        urlResponse = '/quotes.json?orderBy="category"&equalTo="' + query + '"';
+    }
+
+    if (query === 'all') {
+        urlResponse = '/quotes.json';
+    }
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axiosApi.get('/quotes.json');
+            const response = await axiosApi.get(urlResponse);
             const responseArray = [];
+            // const [loading, setLoading] = useState()
 
             Object.keys(response.data).forEach(id => {
                 responseArray.push({
@@ -26,10 +36,10 @@ const DisplayQuotes = () => {
         }
 
         fetchData().catch(console.error);
-    }, [check]);
+    }, [check, urlResponse]);
 
     const onClickEditHandler = (id) => {
-        history.replace('/quote/' + id);
+        history.replace('/quote/' + id + '/edit');
     };
 
     const onClickRemoveHandler = async (id) => {

@@ -17,7 +17,8 @@ function App() {
             <Switch>
                 <Route path="/" exact component={Quotes}/>
                 <Route path="/quote/add" component={QuoteAdd}/>
-                <Route path="/quote/:id" component={Quote}/>
+                <Route path="/quote/:id/edit" component={Quote}/>
+                <Route path="/quotes/:id" component={Quotes}/>
                 <Route render={()=><h1>NotFound</h1>}/>
             </Switch>
         </div>

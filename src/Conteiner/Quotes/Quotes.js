@@ -3,13 +3,13 @@ import './Quotes.css';
 import DisplayCategory from "../../Components/DisplayCategory/DisplayCategory";
 import DisplayQuotes from "../../Components/DisplayQuotes/DisplayQuotes";
 
-const Quotes = () => {
-
-
+const Quotes = ({match}) => {
     return (
         <div className="Main">
             <DisplayCategory/>
-            <DisplayQuotes/>
+            <DisplayQuotes
+                query={match.params.id}
+            />
         </div>
     );
 };
