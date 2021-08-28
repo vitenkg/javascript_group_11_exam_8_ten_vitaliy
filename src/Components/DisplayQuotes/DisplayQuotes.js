@@ -3,11 +3,21 @@ import './DisplayQuotes.css';
 import axiosApi from "../../AxiosApi";
 import category from "../../config";
 import {useHistory} from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
 
 const DisplayQuotes = ({query}) => {
     let history = useHistory();
+    let categoryTitle = '';
+    category.forEach(cat => {
+        if (cat.id === query) {
+            categoryTitle = cat.title
+        }
+    });
+
+
     const [quotes, setQuotes] = useState(null);
     const [check, setCheck] = useState(false);
+    const [loading, setLoading] = useState(false);
     let urlResponse = '/quotes.json';
 
     if (query) {
@@ -22,7 +32,7 @@ const DisplayQuotes = ({query}) => {
         const fetchData = async () => {
             const response = await axiosApi.get(urlResponse);
             const responseArray = [];
-            // const [loading, setLoading] = useState()
+            setLoading(true);
 
             Object.keys(response.data).forEach(id => {
                 responseArray.push({
@@ -33,6 +43,7 @@ const DisplayQuotes = ({query}) => {
             })
             setQuotes(responseArray);
             setCheck(false);
+            setLoading(false);
         }
 
         fetchData().catch(console.error);
@@ -43,47 +54,53 @@ const DisplayQuotes = ({query}) => {
     };
 
     const onClickRemoveHandler = async (id) => {
-        console.log(id);
         const url = '/quotes/' + id + '.json';
         try {
             await axiosApi.delete(url);
+            setLoading(true);
         } finally {
             setCheck(true);
+            setLoading(false);
         }
     };
 
-    return quotes && (
-        <div className="DisplayQuotes">
-            <h3>{category[0].title}</h3>
-            {quotes.map(quote => (
-                    <div
-                        key={quote.id}
-                        id={quote.id}
-                        className="Quote"
-
-                    >
-                        <p className="Title">Автор: {quote.title}</p>
-                        <p>{quote.text}</p>
-                        <button
-                            type="button"
-                            className="Btn"
-                            onClick={() => onClickEditHandler(quote.id)}
+    if (loading) {
+        return (
+        <Spinner/>
+        )
+    } else {
+        return quotes && (
+            <div className="DisplayQuotes">
+                <h3>{categoryTitle}</h3>
+                {quotes.map(quote => (
+                        <div
+                            key={quote.id}
+                            id={quote.id}
+                            className="Quote"
                         >
-                            Редактировать >>
-                        </button>
-                        <button
-                            type="button"
-                            className="Btn"
-                            onClick={() => onClickRemoveHandler(quote.id)}
-                        >
-                            Удалить >>
-                        </button>
-                    </div>
+                            <p className="Title">Автор: {quote.title}</p>
+                            <p>{quote.text}</p>
+                            <button
+                                type="button"
+                                className="Btn"
+                                onClick={() => onClickEditHandler(quote.id)}
+                            >
+                                Редактировать >>
+                            </button>
+                            <button
+                                type="button"
+                                className="Btn"
+                                onClick={() => onClickRemoveHandler(quote.id)}
+                            >
+                                Удалить >>
+                            </button>
+                        </div>
+                    )
                 )
-            )
-            }
-        </div>
-    );
+                }
+            </div>
+        )
+    }
 };
 
 export default DisplayQuotes;
