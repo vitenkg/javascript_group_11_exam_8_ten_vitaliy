@@ -8,9 +8,9 @@ function App() {
         <div className="Container">
             <div className="Header">
                 <p className="NaviHeader"><NavLink exact to="/" style={{textDecoration: 'none'}}>Quotes Central</NavLink></p>
-                <ul>
-                    <li><NavLink exact to="/">Quotes</NavLink></li>
-                    <li><NavLink to="/quote/add">Submit new quote</NavLink></li>
+                <ul className="HeaderUl">
+                    <li className="HeaderLi"><NavLink exact to="/">Quotes</NavLink></li>
+                    <li className="HeaderLi"><NavLink to="/quote/add">Submit new quote</NavLink></li>
                 </ul>
             </div>
             <Switch>

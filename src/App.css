@@ -1,21 +1,21 @@
+.Container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
 .Header {
     display: flex;
     justify-content: space-between;
+    border-bottom: 2px solid grey;
 }
 
 .NaviHeader {
     margin-left: 10px;
     color: #4f5050;
     font-size: 25px;
-    /*background: #5c636a;*/
 }
 
-.Container {
-    width: 1000px;
-    margin: 0 auto;
-}
-
-Ul {
+.HeaderUl {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -23,7 +23,7 @@ Ul {
     padding: 0;
 }
 
-li {
+.HeaderLi {
     display: inline-block;
     border-left: 1px solid lightgrey;
     margin-right: 10px;

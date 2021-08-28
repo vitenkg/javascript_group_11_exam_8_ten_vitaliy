@@ -1,0 +1,14 @@
+.DisplayQuotes {
+    display: inline-block;
+}
+
+.Quote {
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border: 2px solid black;
+    border-radius: 3px;
+}
+
+.Btn {
+    margin-right: 20px;
+}

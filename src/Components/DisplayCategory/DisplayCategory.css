@@ -1,0 +1,18 @@
+.LeftPanel {
+    display: inline-block;
+    /*width: 200px;*/
+    padding-right: 50px;
+}
+
+.CategoryUl {
+    list-style: none;
+}
+
+.CategoryLi {
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.CategoryA {
+    color: dimgray;
+}
